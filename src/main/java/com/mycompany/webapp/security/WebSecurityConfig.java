@@ -64,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			//그 외
 			.antMatchers("/**").permitAll();
 		
-		
 	}
 	
 	/*
@@ -89,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	//인증된 정보를 관리하는 객체를 Spring 관리 객체로 등록
-	//JwtAuthentificationFilter에서 사용
+	//AuthController에서 사용
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {

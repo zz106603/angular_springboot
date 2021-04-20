@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.ProductsDao">
+   <select id="select" resultType="product">
+      select pid, name, description, category, price 
+      from products
+   </select>
+   
+   <select id="count" resultType="int">
+         select count(*) from products
+   </select>
    
    <select id="selectByPage" parameterType="pager" resultType="product">
       select rnum, pid, name, description, category, price
       from (
           select rownum as rnum, pid, name, description, category, price
           from (
-             select pid, name, description, category, price 
+             select pid, name, description, category, price
              from products
              order by pid desc
           )
           where rownum &lt;= #{endRowNo}
       ) 
       where rnum &gt;= #{startRowNo}
-   </select>
-   
-   <select id="count" resultType="int">
-      select count(*) from products
    </select>
    
    <select id="selectByPid" parameterType="int" resultType="product">
